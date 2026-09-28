@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Our Results &amp; What's Next</title>
+<meta name="description" content="Special suprise at the bottom for students">
+<link rel="icon" href="images/icon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Our Results &amp; What's Next">
+<meta property="og:description" content="Special suprise at the bottom for students">
+<meta property="og:image" content="https://framerusercontent.com/assets/dfPz4Qoj7uVJDUhiVB9XXne5iss.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://framerusercontent.com/assets/dfPz4Qoj7uVJDUhiVB9XXne5iss.png">
+<style>
+  /* the same font files the live page loads (from its Framer assets) */
+  @font-face { font-family: "ABC Monument Grotesk Unlicensed Trial Regular"; src: url("https://framerusercontent.com/assets/wq7Y7CRQGimW4jNapUM5pvs24fg.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Apple Garamond Light Regular"; src: url("https://framerusercontent.com/assets/rAtwEWSNgmeNqyPvu7c1PYacs.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "ABC Monument Grotesk Cyrillic Mono Unlicensed Trial Regular"; src: url("https://framerusercontent.com/assets/H79aZcbtjhxeyiVNKYyuZoY6Es.woff2") format("woff2"); font-display: swap; }
+  :root {
+    --serif: "Apple Garamond Light Regular", serif;
+    --mono: "ABC Monument Grotesk Mono Unlicensed Trial", monospace;       /* the labels: the live page never loads this face, so it shows the browser's monospace */
+    --dmono: "ABC Monument Grotesk Cyrillic Mono Unlicensed Trial Regular", monospace;   /* dates and times */
+    --sans: "ABC Monument Grotesk Unlicensed Trial Regular", sans-serif;
+    --ink: rgba(0, 0, 0, 0.9);
+    --rule: #dedede;
+    --col: 648px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; color: #000; }
+  body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; }
+  a { color: inherit; }
+
+  /* Flashbulb lives on a fixed full-window layer behind the page, so its flashes wash over everything and
+     stars can go anywhere; the hero is just the box it keeps the type in */
+  .flash-layer { position: fixed; inset: 0; width: 100vw; height: 100vh; border: 0; z-index: 0; pointer-events: none; }
+  .page { position: relative; z-index: 1; pointer-events: none; }
+  .page a, .page button { pointer-events: auto; }
+  /* the photos take clicks (they set off the flash) and show focus brackets as the cursor */
+  .page .strip { pointer-events: auto; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M6 12V6h6M20 6h6v6M26 20v6h-6M12 26H6v-6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23fff'/%3E%3C/svg%3E") 16 16, crosshair; }
+  /* during a flash (--k: 0 → 1): the text and logos all but vanish, and the photos turn into black-and-white negatives */
+  .page { --k: 0; }
+  /* the text turns an almost-white light grey under the flash, instead of fading away */
+  .page { --flash-ink: color-mix(in srgb, #fff calc(var(--k) * 100%), rgba(0, 0, 0, 0.9));
+          --flash-glow: 0 0 calc(10px * var(--k)) rgb(255 255 255 / calc(0.9 * var(--k))), 0 0 calc(24px * var(--k)) rgb(255 255 255 / calc(0.55 * var(--k))); }
+  /* under the flash, all the text blows out to white and glows */
+  .page .label, .page h2, .page p, .page .row span, .page .btn .in span { text-shadow: var(--flash-glow); }
+  .page .label, .page h2, .page p, .page .row span, .page .btn { color: var(--flash-ink); }
+  /* the sponsor labels go bright white with their logos */
+  .page .brought .label, .page .made .label { color: color-mix(in srgb, #fff calc(var(--k) * 100%), #000); }
+  .row { border-bottom-color: color-mix(in srgb, #f4f4f4 calc(var(--k) * 100%), var(--rule)); }
+  .btn::after { border-color: var(--flash-ink); }
+  /* the buttons follow the flash too: light grey label, outline and arrow */
+  .page .btn .in span, .page .btn.plain:hover .in span { color: color-mix(in srgb, #fff calc(var(--k) * 100%), #000); }
+  .page .btn::after { border-color: color-mix(in srgb, #fff calc(var(--k) * 100%), #000); }
+  .page .btn svg { filter: none; }
+  .page .btn svg path { fill: color-mix(in srgb, #fff calc(var(--k) * 100%), #000); }
+  .page .btn:not(.plain):hover { background: color-mix(in srgb, #fff calc(var(--k) * 100%), #000); }
+  .page .btn:not(.plain):hover .in span { color: color-mix(in srgb, #9c9c9c calc(var(--k) * 100%), #fff); }
+  .page .btn:not(.plain):hover svg path { fill: color-mix(in srgb, #9c9c9c calc(var(--k) * 100%), #fff); }
+  /* every mark goes to black first (DoorDash's red included), then inverts: bright white logos under the flash */
+  .logos, .logos-stack { filter: brightness(calc(1 - var(--k))) invert(var(--k)); opacity: calc(1 - 0.15 * var(--k)); }   /* sponsor logos go negative like the photos */
+  .strip img { filter: grayscale(var(--kp)) invert(var(--kp)) contrast(calc(1 + 0.7 * var(--kp))) brightness(calc(1 + 0.45 * var(--kp))); }   /* negatives, highlights blown bright */
+  .strip { --kp: 0; opacity: calc(1 - 0.45 * var(--kp)); }   /* --kp: the photos' own copy of --k, eased in as gently as it fades out */   /* the negatives dim too, but stay faintly there */
+  .hero { width: min(1278px, calc(100% - 40px)); aspect-ratio: 1216 / 636; margin: 62px auto 0; }
+
+  .label { font: 400 12px/1.72 var(--mono); text-align: center; letter-spacing: 0; text-transform: uppercase; margin: 0; }
+  .logos { width: min(514px, calc(100% - 40px)); height: auto; margin: 0 auto; }
+  .brought { margin-top: 8px; }
+  .brought .logos { margin-top: 13px; }
+
+  /* the photo strip, scrolling on a loop */
+  .strip { margin-top: 54px; overflow: hidden; }
+  .strip .track { display: flex; gap: 6px; width: max-content; animation: slide 90s linear infinite; }
+  .strip img { height: 316px; width: auto; object-fit: cover; flex: none; }
+  @keyframes slide { to { transform: translateX(calc(-50% - 3px)); } }
+
+  main { width: min(var(--col), calc(100% - 40px)); margin: 0 auto; }
+  section { padding-top: 132px; }
+  section + section { padding-top: 137px; }
+  h2 { font: 400 46px/0.96 var(--serif); letter-spacing: -1.2px; text-align: center; margin: 0 0 6px; }
+  .toggle { display: block; }
+  .body { margin-top: 24px; }
+  p { font: 400 20px/1.62 var(--sans); letter-spacing: -0.6px; color: var(--ink); margin: 0 0 32px; }
+  p:last-child { margin-bottom: 0; }
+  u { text-decoration: underline; text-underline-offset: auto; }
+
+  /* key dates */
+  .dates { margin-top: 26px; }
+  /* even space above and below each line: the same line box for every cell, padded equally, sharing a baseline */
+  .row { display: grid; grid-template-columns: 114px 1fr auto; align-items: baseline; padding: 11px 0 10px; border-bottom: 1px solid var(--rule); }
+  .row .d, .row .t { font: 400 16px/24px var(--dmono); letter-spacing: -0.6px; color: var(--ink); }
+  .row .e { font: 400 18px/24px var(--sans); letter-spacing: -0.6px; color: var(--ink); text-align: right; }
+
+  /* buttons */
+  .ctas { display: flex; flex-direction: column; align-items: center; gap: 10px; padding-top: 69px; }
+  /* matched to the reference: a 1.4px black outline pill; on hover it fills black and the label and arrow go white */
+  .btn {
+    position: relative; width: 292px; height: 78px; padding: 0 32px; border-radius: 40px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; background: transparent; color: #000; cursor: pointer; overflow: hidden;
+    transition: background-color .25s ease, color .25s ease;
+  }
+  .btn::after { content: ""; position: absolute; inset: 0; border: 1.4px solid #000; border-radius: inherit; pointer-events: none; }
+  .btn .in { display: flex; align-items: center; justify-content: center; gap: 10px; width: 188px; height: 40px; }
+  .btn svg { width: 40px; height: 40px; flex: none; filter: brightness(0); transition: filter .25s ease; }
+  .btn span { font: 400 18px/1.5 var(--sans); letter-spacing: 0.4px; text-transform: uppercase; white-space: pre; }
+  .btn:hover { background: #000; color: #fff; }
+  .btn:hover svg { filter: brightness(2); }
+  /* the secondary one: no outline, no arrow, and on hover it just underlines */
+  .btn.plain::after { content: none; }
+  .btn.plain:hover { background: transparent; color: #000; }
+  .btn.plain:hover span span, .btn.plain:hover .in > span { text-decoration: underline; text-underline-offset: 3px; }
+  .made { padding: 80px 0 78px; }
+  .made .logos { margin-top: 15px; }
+
+  /* 770–1199: tablet-wide */
+  @media (max-width: 1199.98px) { .hero { width: calc(100% - 40px); max-width: 1180px; } }
+  /* ≤769 */
+  @media (max-width: 769.98px) {
+    .strip img { height: 260px; }
+  }
+  /* phones: the questions go, each section folds up to its label (key dates stays open) */
+  .logos-stack { display: none; width: 194px; height: auto; margin: 0 auto; }
+  /* phones — measured from the live page at 390px wide */
+  @media (max-width: 501.98px) {
+    /* the hero fills the screen edge to edge on phones (the outer stars just touch the sides) and tucks over the logos */
+    .page { overflow-x: clip; }
+    .hero { width: 106%; margin: 18px 0 -22px -3%; }
+    .brought { margin-top: 8px; position: relative; }
+    .brought .logos { margin-top: 14px; }   /* the horizontal row stays on phones too */
+    .strip { margin-top: 38px; }
+    .strip img { height: 213px; }
+    main { width: calc(100% - 32px); }
+    section { padding-top: 56px; }
+    section + section { padding-top: 55px; }
+    h2 { font-size: 32px; line-height: 30.72px; margin: 0 -8px 5px; }
+    .body { margin-top: 30px; }
+    p { margin-bottom: 22.6px; }
+    .dates { margin: 18px -4px 15px; }
+    .row { grid-template-columns: 77px 103px 1fr; }
+    .row .long { display: none; }
+    .ctas { padding-top: 62px; }
+    .btn { height: 68px; }
+    .made { padding: 72px 0 77px; }
+    .made .logos { margin-top: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<iframe class="flash-layer" id="flash" src="flash.html?flash&amp;embed" title="The Search For Top Young Design Talent" tabindex="-1"></iframe>
+<div class="page">
+<div class="hero" id="hero" role="img" aria-label="The Search For Top Young Design Talent"></div>
+
+<div class="brought">
+  <p class="label">Brought to you by</p>
+  <img class="logos" src="images/sponsors.png" width="2048" height="143" alt="Sponsors" />
+</div>
+
+<div class="strip" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<main>
+  <section>
+    <h2>What is it?</h2>
+    <div class="toggle"><p class="label">Summary</p></div>
+    <div class="body">
+      <p>A <u>national, virtual</u> design &amp; prototyping <u>competition for students</u>.</p>
+      <p><u>We’ll fly out the finalists to NYC</u> for a weekend of bonding, intimate design crits with top industry designers, &amp; private deep dive workshops with our sponsors.</p>
+      <p><u>Every team</u> that finishes is eligible for a call with Naheel Jawaid, founder of SVSD, focussed on how to make their project industry-level.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>When is it?</h2>
+    <div class="toggle"><p class="label">Key dates</p></div>
+    <div class="dates body">
+      <div class="row"><span class="d">Oct 08</span><span class="t">11:59PM PST</span><span class="e">Deadline to sign up</span></div>
+      <div class="row"><span class="d">Oct 09</span><span class="t">07:00AM PST</span><span class="e">Competition starts</span></div>
+      <div class="row"><span class="d">Oct 10</span><span class="t"><span class="long">Various </span>TBA</span><span class="e">Workshops w/ Naheel</span></div>
+      <div class="row"><span class="d">Oct 13</span><span class="t">11:59PM PST</span><span class="e">Competition ends</span></div>
+      <div class="row"><span class="d">Oct 18</span><span class="t">11:00AM PST</span><span class="e">Finalists announced</span></div>
+      <div class="row"><span class="d">Nov 6-8</span><span class="t"><span class="long">Schedule </span>TBA</span><span class="e">Finalist weekend in NYC</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who is it for?</h2>
+    <div class="toggle"><p class="label">Eligibility</p></div>
+    <div class="body">
+      <p><u>Teams of 2-3</u>.</p>
+      <p>You must all be in college (&amp; located) in the <u>US or Canada</u>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What is the criteria?</h2>
+    <div class="toggle"><p class="label">Evaluation</p></div>
+    <div class="body">
+      <p>We’ll give you a prompt and ask you to <u>design &amp; prototype your solution</u>.</p>
+      <p>We’ll also ask you to record a 5-7min max presentation sharing <u>how you explored &amp; solved product/interaction problems</u> in your project.</p>
+      <p>You’ll be evaluated on how you <u>identify the right problems</u> to explore, your <u>depth of thinking</u> in exploring those problems, and the final <u>craft of your solution</u>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What is the prize?</h2>
+    <div class="toggle"><p class="label">Recognition</p></div>
+    <div class="body">
+      <p>Teams who are finalists will be flown out to NYC (flights + hotel are on us).</p>
+      <p>The weekend will be planned out for you to bond with the other finalists, jam directly with top industry designers, and participate in exclusive deep dive workshops from designers from our sponsors.</p>
+      <p>The weekend will mirror how Naheel runs retreats in SVSD, where he brings surprise guests from everywhere like OpenAI, Apple, Anthropic, and more to push students towards excellence in thinking and craft.</p>
+      <p>Our goal is to make sure this weekend serves as an fun and accelerating force in your design career.</p>
+    </div>
+  </section>
+
+  <div class="ctas">
+    <a class="btn" href="https://forms.gle/p6GnRoua4v3Y23Fw8" target="_blank" rel="noopener">
+      <span class="in"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M33.495 20.495a.7.7 0 0 0 0-.99L29.04 15.05a.7.7 0 1 0-.99.99L32.01 20l-3.96 3.96a.7.7 0 1 0 .99.99l4.455-4.455ZM7 20.7h26v-1.4H7v1.4Z" fill="#fff"/></svg><span>Sign Up Your Team</span></span>
+    </a>
+    <a class="btn plain" href="mailto:svsd.school@gmail.com?subject=Question%20about%20the%20competition">
+      <span class="in"><span>Ask a Question</span></span>
+    </a>
+  </div>
+</main>
+
+<div class="made">
+  <p class="label">Made possible by</p>
+  <img class="logos" src="images/sponsors.png" width="2048" height="143" alt="Sponsors" />
+</div>
+
+</div>
+
+<script>
+  // the flash layer: keep it told where the hero box is, and hand it the pointer (except over links and buttons)
+  const flash = document.getElementById("flash"), hero = document.getElementById("hero");
+  const post = m => flash.contentWindow && flash.contentWindow.postMessage({ fb: 1, ...m }, "*");
+  let queued = false;
+  const sendHero = () => { queued = false; const r = hero.getBoundingClientRect(); post({ hero: [r.left, r.top, r.width, r.height] }); };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(sendHero); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  flash.addEventListener("load", () => { sendHero(); setTimeout(sendHero, 300); setTimeout(sendHero, 1000); });
+  const onControl = e => e.target.closest && e.target.closest("a, button");
+  for (const type of ["pointermove", "pointerdown", "pointerup"]) addEventListener(type, e => {
+    if (type !== "pointerup" && onControl(e)) { if (type === "pointermove") post({ ev: "leave" }); return; }
+    post({ ev: type, x: e.clientX, y: e.clientY, ink: !!(e.target.closest && e.target.closest(".strip")) });   // the photos flash like the type
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => post({ ev: "leave" }));
+
+  // the photos turn into negatives on a quick exponential glide (~90% in 0.2s) instead of snapping; they fade back more slowly than the flash itself (x0.1 per second vs its x0.03)
+  const stripEl = document.querySelector(".strip");
+  let photoK = 0, photoTarget = 0, photoRaf = 0, photoLast = 0;
+  function photoStep(t) {
+    const dt = photoLast ? Math.min((t - photoLast) / 1000, 0.1) : 0.016; photoLast = t;
+    photoK = photoTarget > photoK ? photoK + (photoTarget - photoK) * (1 - Math.pow(1e-5, dt)) : Math.max(photoTarget, photoK * Math.pow(0.1, dt));
+    stripEl.style.setProperty("--kp", photoK.toFixed(3));
+    if (Math.abs(photoTarget - photoK) > 0.002) photoRaf = requestAnimationFrame(photoStep); else { photoRaf = 0; photoLast = 0; }
+  }
+
+  // while the flash is up, the page's own content dims under it, then comes back as the exposure fades
+  const page = document.querySelector(".page");
+  addEventListener("message", e => { if (e.source === flash.contentWindow && typeof e.data?.fbK === "number") {
+    page.style.setProperty("--k", e.data.fbK.toFixed(3));
+    photoTarget = e.data.fbK; if (!photoRaf) photoRaf = requestAnimationFrame(photoStep);
+    // the photo strip freezes like a still while the flash is up, then carries on from the same spot
+    track.style.animationPlayState = e.data.fbK > 0.05 ? "paused" : "running";
+  } });
+
+  // the photo strip: one set of photos, laid out twice so the loop is seamless
+  const PHOTOS = ["61QeFldFA6htebW1BfVhsPF0L4", "Dfw3r5yzOyTWBNsqP4kUyZ1lno", "fFtYa9OE6nyg8OiKH64JiZI4wwc", "ounfNduTdsGwYxACUYwast7iCpg",
+    "V7Mh7bElYsU3MxKaW0nTbX88Iwg", "msOwsIkp8eg7oF602xwfiQrk", "MeP9jwvnit8rUxRgr6rwNCktJc", "q3PavUYVwjQlOSvD5Obbx47a70",
+    "q8J2gfOUn4AcNIBjGfyc1G5pHfo", "IIrmhSJN7781rHoMgXoOMPtKo"];
+  const track = document.getElementById("track");
+  for (let k = 0; k < 2; k++) for (const id of PHOTOS) {
+    const img = new Image();
+    img.src = `images/${id}.jpg`;
+    img.alt = ""; img.decoding = "async";
+    track.appendChild(img);
+  }
+</script>
+</body>
+</html>

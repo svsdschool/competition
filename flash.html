@@ -878,7 +878,7 @@ vec3 scene(vec2 p){
     vec3 ink = vec3(0.06, 0.06, 0.065)*(0.45 + 1.1*dif*fall) + sp*(0.06 + 0.5*rim)*fall*inflate;
     // under the cursor it catches the light like the spray paint did: a glossy highlight that shows the letters' dimension
     float wetP = clamp(exp(-dot(rel, rel)/(2.*120.*120.))*uHover*(1. - K)*1.4, 0., 1.);
-    ink += vec3(0.62, 0.64, 0.7)*(spec*0.47 + exp(-dot(rel, rel)/(2.*170.*170.))*0.086)*wetP*f.r;
+    ink += vec3(0.62, 0.64, 0.7)*(spec*0.56 + exp(-dot(rel, rel)/(2.*170.*170.))*0.1)*wetP*f.r;
     col = mix(mix(PAPER, ink, f.r), col, m);   // the page stays clean white: no cast shadow
   }
 

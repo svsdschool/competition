@@ -94,6 +94,7 @@
   /* even space above and below each line: the same line box for every cell, padded equally, sharing a baseline */
   .row { display: grid; grid-template-columns: 114px 1fr auto; align-items: baseline; padding: 11px 0 10px; border-bottom: 1px solid var(--rule); }
   .row .d, .row .t { font: 400 16px/24px var(--dmono); letter-spacing: -0.6px; color: var(--ink); }
+  .row br.mb { display: none; }   /* phones only: the second time drops to its own line */
   .row .e { font: 400 18px/24px var(--sans); letter-spacing: -0.6px; color: var(--ink); text-align: right; }
 
   /* buttons */
@@ -144,6 +145,8 @@
     .dates { margin: 18px -4px 15px; }
     .row { grid-template-columns: 77px 103px 1fr; }
     .row .long { display: none; }
+    .row .sep { display: none; }   /* two times stack, one per line */
+    .row br.mb { display: inline; }
     .ctas { padding-top: 62px; }
     .btn { height: 68px; }
     .made { padding: 72px 0 77px; }
@@ -181,7 +184,9 @@
     <div class="dates body">
       <div class="row"><span class="d">Oct 14</span><span class="t">11:59PM PST</span><span class="e">Deadline to sign up</span></div>
       <div class="row"><span class="d">Oct 15</span><span class="t">07:00AM PST</span><span class="e">Competition starts</span></div>
-      <div class="row"><span class="d">Oct 16</span><span class="t"><span class="long">Various </span>TBA</span><span class="e">Workshops w/ Naheel</span></div>
+      <div class="row"><span class="d">Oct 16</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM PST</span><span class="e">Opening ceremony</span></div>
+      <div class="row"><span class="d">Oct 17</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM PST</span><span class="e">Beginner workshop</span></div>
+      <div class="row"><span class="d">Oct 18</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM PST</span><span class="e">Advanced workshop</span></div>
       <div class="row"><span class="d">Oct 19</span><span class="t">11:59PM PST</span><span class="e">Competition ends</span></div>
       <div class="row"><span class="d">Oct 22</span><span class="t">11:00AM PST</span><span class="e">Finalists announced</span></div>
       <div class="row"><span class="d">Nov 6-8</span><span class="t">All Day</span><span class="e">Finalist weekend in NYC</span></div>

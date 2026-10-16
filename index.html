@@ -103,7 +103,8 @@
   .page .row .join .tag { color: #fff; text-shadow: none; }   /* beats the page-wide text colour and flash glow */
   .join.has-tag svg { display: none; }
   .join.has-tag .tag { display: inline-block; }
-  .join.is-live .tag::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; vertical-align: 1px; border-radius: 50%; background: #ff3b30; animation: live-pulse 1.4s ease-in-out infinite; }
+  .page .row .join.is-live .tag { background: #e5261b; }   /* live now: red */
+  .join.is-live .tag::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; vertical-align: 1px; border-radius: 50%; background: #fff; animation: live-pulse 1.4s ease-in-out infinite; }
   @keyframes live-pulse { 50% { opacity: .25; } }
   /* the brief: a document icon marks it as a link out to the Google Doc */
   .row .brief { color: var(--flash-ink, var(--ink)); text-decoration: none; }
@@ -273,13 +274,13 @@
   addEventListener("scroll", queue, { passive: true });
   addEventListener("resize", queue);
   flash.addEventListener("load", () => { sendHero(); setTimeout(sendHero, 300); setTimeout(sendHero, 1000); });
-  // the calls' live tags, from each row's start time (Pacific): a countdown from midnight that day ("Live in 1:05", then "Live in 42 min"),
+  // the calls' live tags, from each row's start time (an exact moment, so right in every timezone): a countdown from the viewer's local midnight that day ("Live in 1:05", then "Live in 42 min"),
   // "Live now" from the start for two hours, then back to the camera icon. (?now=<ISO time> previews any moment.)
   const NOW_OFFSET = (t => t ? Date.parse(t) - Date.now() : 0)(new URLSearchParams(location.search).get("now"));
   function liveTags() {
     const now = Date.now() + NOW_OFFSET;
     for (const a of document.querySelectorAll(".join[data-start]")) {
-      const start = Date.parse(a.dataset.start), midnight = start - 9.5 * 3600e3;
+      const start = Date.parse(a.dataset.start), midnight = new Date(start).setHours(0, 0, 0, 0);   // the viewer's own midnight on the day of the call
       let txt = "";
       if (now >= midnight && now < start) {
         const m = Math.ceil((start - now) / 60e3);

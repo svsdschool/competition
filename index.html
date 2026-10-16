@@ -94,7 +94,7 @@
   /* even space above and below each line: the same line box for every cell, padded equally, sharing a baseline */
   .row { display: grid; grid-template-columns: 114px 1fr auto; align-items: baseline; padding: 11px 0 10px; border-bottom: 1px solid var(--rule); }
   .row .d, .row .t { font: 400 16px/24px var(--dmono); letter-spacing: -0.6px; color: var(--ink); }
-  /* the calls: a camera icon links to each Meet; on the day it becomes a "Live in 1:05" countdown tag, then "Live now" for two hours */
+  /* the calls: a camera icon links to each Meet; on the day it becomes a "Live in 1h20m" countdown tag, then "Live now" for two hours */
   .join { color: var(--flash-ink, var(--ink)); text-decoration: none; }
   .join svg { display: inline-block; vertical-align: -3px; margin-right: 9px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
   .join:hover .nm { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }   /* same hover as the brief link */
@@ -274,7 +274,7 @@
   addEventListener("scroll", queue, { passive: true });
   addEventListener("resize", queue);
   flash.addEventListener("load", () => { sendHero(); setTimeout(sendHero, 300); setTimeout(sendHero, 1000); });
-  // the calls' live tags, from each row's start time (an exact moment, so right in every timezone): a countdown from the viewer's local midnight that day ("Live in 1:05", then "Live in 42 min"),
+  // the calls' live tags, from each row's start time (an exact moment, so right in every timezone): a countdown from the viewer's local midnight that day ("Live in 1h20m", then "Live in 42m"),
   // "Live now" from the start for two hours, then back to the camera icon. (?now=<ISO time> previews any moment.)
   const NOW_OFFSET = (t => t ? Date.parse(t) - Date.now() : 0)(new URLSearchParams(location.search).get("now"));
   function liveTags() {
@@ -284,7 +284,7 @@
       let txt = "";
       if (now >= midnight && now < start) {
         const m = Math.ceil((start - now) / 60e3);
-        txt = "Live in " + (m >= 60 ? Math.floor(m / 60) + ":" + String(m % 60).padStart(2, "0") : m + " min");
+        txt = "Live in " + (m >= 60 ? Math.floor(m / 60) + "h" + (m % 60 ? (m % 60) + "m" : "") : m + "m");
       } else if (now >= start && now < start + 2 * 3600e3) txt = "Live now";
       a.classList.toggle("has-tag", !!txt);
       a.classList.toggle("is-live", txt === "Live now");

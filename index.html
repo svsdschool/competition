@@ -94,16 +94,17 @@
   /* even space above and below each line: the same line box for every cell, padded equally, sharing a baseline */
   .row { display: grid; grid-template-columns: 114px 1fr auto; align-items: baseline; padding: 11px 0 10px; border-bottom: 1px solid var(--rule); }
   .row .d, .row .t { font: 400 16px/24px var(--dmono); letter-spacing: -0.6px; color: var(--ink); }
-  /* a call to join on the event rows: not live yet, so a tooltip says when it opens */
-  .join { position: relative; display: inline; margin: 0; padding: 0; border: 0; background: none; color: var(--flash-ink, var(--ink)); cursor: default; }
-  .join { font: inherit; letter-spacing: inherit; text-align: inherit; }
+  /* the calls: a camera icon links to each Meet; on the day it becomes a "Live in 1:05" countdown tag, then "Live now" for two hours */
+  .join { color: var(--flash-ink, var(--ink)); text-decoration: none; }
   .join svg { display: inline-block; vertical-align: -3px; margin-right: 9px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
-  .join::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); right: 0; transform: translateY(4px); padding: 6px 9px; border-radius: 6px;
-    background: #000; color: #fff; font: 400 12px/1.2 var(--dmono); letter-spacing: -0.3px; white-space: nowrap; text-shadow: none;
-    opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s; z-index: 2; }
-  .join:hover::after, .join:focus-visible::after, .join.tip::after { opacity: 1; transform: translateY(0); }   /* flush with the label's right edge, so it never runs off screen */
-  .join:focus { outline: none; }
-  .join:hover span, .join.tip span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }   /* same hover as the brief link */
+  .join:hover .nm { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }   /* same hover as the brief link */
+  .join .tag { display: none; margin-right: 9px; padding: 3px 7px 2px; border-radius: 4px; vertical-align: 2px; background: #000; color: #fff;
+    font: 400 12px/14px var(--dmono); letter-spacing: -0.3px; white-space: nowrap; text-shadow: none; }
+  .page .row .join .tag { color: #fff; text-shadow: none; }   /* beats the page-wide text colour and flash glow */
+  .join.has-tag svg { display: none; }
+  .join.has-tag .tag { display: inline-block; }
+  .join.is-live .tag::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; vertical-align: 1px; border-radius: 50%; background: #ff3b30; animation: live-pulse 1.4s ease-in-out infinite; }
+  @keyframes live-pulse { 50% { opacity: .25; } }
   /* the brief: a document icon marks it as a link out to the Google Doc */
   .row .brief { color: var(--flash-ink, var(--ink)); text-decoration: none; }
   .row .brief svg { display: inline-block; vertical-align: -3px; margin-right: 9px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
@@ -111,13 +112,13 @@
   .row br.mb { display: none; }
   /* narrower screens: the two times stack, one per line, instead of wrapping around the slash */
   @media (max-width: 719.98px) { .row .sep { display: none; } .row br.mb { display: inline; } }
-  /* phones: a slimmer icon so "Advanced workshop" stays on one line, and the tooltip sits flush with the row's right edge so it stays on screen */
+  /* phones: slimmer icons so "Advanced workshop" stays on one line */
   @media (max-width: 501.98px) {
-    .row .e { position: relative; }
-    .join { position: static; }
     .join svg { width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; }
+    /* no room beside the name on phones: the tag drops under it, level with the second time */
+    .join.has-tag { display: inline-flex; flex-direction: column-reverse; align-items: flex-end; gap: 4px; }
+    .join.has-tag .tag { margin-right: 0; }
     .row .brief svg { width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; }
-    .join::after { bottom: calc(100% + 4px); }
   }
   .row .e { font: 400 18px/24px var(--sans); letter-spacing: -0.6px; color: var(--ink); text-align: right; }
 
@@ -206,9 +207,9 @@
     <div class="dates body">
       <div class="row"><span class="d">Oct 14</span><span class="t">11:59PM PST</span><span class="e">Deadline to sign up</span></div>
       <div class="row"><span class="d">Oct 15</span><span class="t">07:00AM PST</span><span class="e"><a class="brief" href="https://docs.google.com/document/d/1XenRcZqCIXONBVA8C0iGLkI4luA8Qmf4DmZA5gF3mmc/edit?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 2.8h8.2L19 7.6v13.6H6z"/><path d="M14 2.8v5h5M9 12h7M9 15.2h7M9 18.4h4.5"/></svg><span>Brief Released</span></a></span></div>
-      <div class="row"><span class="d">Oct 16</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><button class="join" type="button" aria-label="Join call (opens Oct 16)" data-tip="You'll be able to join on Oct 16"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2 21 7v10l-5.5-3.2z"/></svg><span>Opening ceremony</span></button></span></div>
-      <div class="row"><span class="d">Oct 17</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><button class="join" type="button" aria-label="Join call (opens Oct 17)" data-tip="You'll be able to join on Oct 17"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2 21 7v10l-5.5-3.2z"/></svg><span>Beginner workshop</span></button></span></div>
-      <div class="row"><span class="d">Oct 18</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><button class="join" type="button" aria-label="Join call (opens Oct 18)" data-tip="You'll be able to join on Oct 18"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2 21 7v10l-5.5-3.2z"/></svg><span>Advanced workshop</span></button></span></div>
+      <div class="row"><span class="d">Oct 16</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><a class="join" href="https://meet.google.com/vsq-xubx-iox" target="_blank" rel="noopener" data-start="2026-10-16T09:30:00-07:00"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2 21 7v10l-5.5-3.2z"/></svg><span class="tag"></span><span class="nm">Opening ceremony</span></a></span></div>
+      <div class="row"><span class="d">Oct 17</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><a class="join" href="https://meet.google.com/zig-skoc-ppj" target="_blank" rel="noopener" data-start="2026-10-17T09:30:00-07:00"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2 21 7v10l-5.5-3.2z"/></svg><span class="tag"></span><span class="nm">Beginner workshop</span></a></span></div>
+      <div class="row"><span class="d">Oct 18</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><a class="join" href="https://meet.google.com/ieg-mwca-ukt" target="_blank" rel="noopener" data-start="2026-10-18T09:30:00-07:00"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.2 21 7v10l-5.5-3.2z"/></svg><span class="tag"></span><span class="nm">Advanced workshop</span></a></span></div>
       <div class="row"><span class="d">Oct 19</span><span class="t">11:59PM PST</span><span class="e">Competition ends</span></div>
       <div class="row"><span class="d">Oct 22</span><span class="t">11:00AM PST</span><span class="e">Finalists announced</span></div>
       <div class="row"><span class="d">Nov 6-8</span><span class="t">All Day</span><span class="e">Finalist weekend in NYC</span></div>
@@ -272,11 +273,25 @@
   addEventListener("scroll", queue, { passive: true });
   addEventListener("resize", queue);
   flash.addEventListener("load", () => { sendHero(); setTimeout(sendHero, 300); setTimeout(sendHero, 1000); });
-  // phones have no hover: a tap on a join icon shows its tooltip for a moment
-  document.querySelectorAll(".join").forEach(b => b.addEventListener("click", () => {
-    document.querySelectorAll(".join.tip").forEach(o => o !== b && o.classList.remove("tip"));
-    b.classList.add("tip"); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove("tip"), 2200);
-  }));
+  // the calls' live tags, from each row's start time (Pacific): a countdown from midnight that day ("Live in 1:05", then "Live in 42 min"),
+  // "Live now" from the start for two hours, then back to the camera icon. (?now=<ISO time> previews any moment.)
+  const NOW_OFFSET = (t => t ? Date.parse(t) - Date.now() : 0)(new URLSearchParams(location.search).get("now"));
+  function liveTags() {
+    const now = Date.now() + NOW_OFFSET;
+    for (const a of document.querySelectorAll(".join[data-start]")) {
+      const start = Date.parse(a.dataset.start), midnight = start - 9.5 * 3600e3;
+      let txt = "";
+      if (now >= midnight && now < start) {
+        const m = Math.ceil((start - now) / 60e3);
+        txt = "Live in " + (m >= 60 ? Math.floor(m / 60) + ":" + String(m % 60).padStart(2, "0") : m + " min");
+      } else if (now >= start && now < start + 2 * 3600e3) txt = "Live now";
+      a.classList.toggle("has-tag", !!txt);
+      a.classList.toggle("is-live", txt === "Live now");
+      a.querySelector(".tag").textContent = txt;
+    }
+  }
+  liveTags(); setInterval(liveTags, 10e3);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) liveTags(); });
   const onControl = e => e.target.closest && e.target.closest("a, button");
   for (const type of ["pointermove", "pointerdown", "pointerup"]) addEventListener(type, e => {
     if (type !== "pointerup" && onControl(e)) { if (type === "pointermove") post({ ev: "leave" }); return; }

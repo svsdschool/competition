@@ -112,13 +112,13 @@
   .row .brief:hover span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .row br.mb { display: none; }
   /* narrower screens: the two times stack, one per line, instead of wrapping around the slash */
-  @media (max-width: 719.98px) { .row .sep { display: none; } .row br.mb { display: inline; } }
+  @media (max-width: 719.98px) { .row .sep { display: none; } .row br.mb { display: inline; }
+    /* no room beside the name here: the live tag drops under it, level with the second time */
+    .join.has-tag { display: inline-flex; flex-direction: column-reverse; align-items: flex-end; gap: 4px; }
+    .join.has-tag .tag { margin-right: 0; } }
   /* phones: slimmer icons so "Advanced workshop" stays on one line */
   @media (max-width: 501.98px) {
     .join svg { width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; }
-    /* no room beside the name on phones: the tag drops under it, level with the second time */
-    .join.has-tag { display: inline-flex; flex-direction: column-reverse; align-items: flex-end; gap: 4px; }
-    .join.has-tag .tag { margin-right: 0; }
     .row .brief svg { width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; }
   }
   .row .e { font: 400 18px/24px var(--sans); letter-spacing: -0.6px; color: var(--ink); text-align: right; }

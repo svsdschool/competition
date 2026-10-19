@@ -110,6 +110,18 @@
   .row .brief { color: var(--flash-ink, var(--ink)); text-decoration: none; }
   .row .brief svg { display: inline-block; vertical-align: -3px; margin-right: 9px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
   .row .brief:hover span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  /* the extended deadline: a banner across the top of the page, and the key row in the schedule, both linking to the submission form */
+  .deadline { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 18px; padding: 13px 20px; background: #000; color: #fff; text-decoration: none; text-align: center; }
+  .deadline .dl-k { font: 400 12px/1 var(--dmono); text-transform: uppercase; letter-spacing: 0.4px; padding: 5px 8px 4px; border-radius: 4px; background: #e5261b; }
+  .deadline .dl-v { font: 400 16px/1.3 var(--sans); letter-spacing: -0.2px; }
+  .deadline .dl-cta { display: inline-flex; align-items: center; gap: 4px; font: 400 16px/1.3 var(--sans); letter-spacing: -0.2px; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .deadline svg, .row .submit svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .deadline .nw { white-space: nowrap; }
+  .deadline:hover .dl-cta { text-decoration-thickness: 2px; }
+  .row.key { margin: 0 -12px; padding-left: 12px; padding-right: 12px; background: #f3f3f3; border-radius: 8px; border-bottom-color: transparent; }
+  .page .row.key .d, .page .row.key .t { color: #e5261b; }
+  .row .submit { display: inline-flex; align-items: center; gap: 5px; color: var(--flash-ink, var(--ink)); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .row .submit:hover { text-decoration-thickness: 2px; }
   .row br.mb { display: none; }
   /* narrower screens: the two times stack, one per line, instead of wrapping around the slash */
   @media (max-width: 719.98px) { .row .sep { display: none; } .row br.mb { display: inline; }
@@ -182,6 +194,7 @@
 
 <iframe class="flash-layer" id="flash" src="flash.html?flash&amp;embed" title="The Search For Top Young Design Talent" tabindex="-1"></iframe>
 <div class="page">
+<a class="deadline" href="https://forms.gle/VXwMbSGD5oLiaTgn8" target="_blank" rel="noopener"><span class="dl-k">Deadline extended</span><span class="dl-v">Submissions close <span class="nw">Wednesday, Oct 21</span> · <span class="nw">11:59PM PST</span></span><span class="dl-cta">Submit your project <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
 <div class="hero" id="hero" role="img" aria-label="The Search For Top Young Design Talent"></div>
 
 <div class="brought">
@@ -211,7 +224,7 @@
       <div class="row"><span class="d">Oct 16</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><a class="join" href="https://drive.google.com/file/d/1wMBo-vRFy7IPaot60g6RfP5NVWClWtPt/view" target="_blank" rel="noopener" aria-label="Watch the opening ceremony recording"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10 9v6l5-3z"/></svg><span class="nm">Opening ceremony</span></a></span></div>
       <div class="row"><span class="d">Oct 17</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><a class="join" href="https://drive.google.com/file/d/1P0BgB3Hp5LtN-blKgpukJSYKEqR1ndF1/view?usp=sharing" target="_blank" rel="noopener" aria-label="Watch the beginner workshop recording"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10 9v6l5-3z"/></svg><span class="nm">Beginner workshop</span></a></span></div>
       <div class="row"><span class="d">Oct 18</span><span class="t">9:30AM PST<span class="sep"> / </span><br class="mb">12:30PM EST</span><span class="e"><a class="join" href="https://drive.google.com/file/d/1K5z6YGjib5n1uBCK6-4TWo3o_jmUCxgm/view?usp=sharing" target="_blank" rel="noopener" aria-label="Watch the advanced workshop recording"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M10 9v6l5-3z"/></svg><span class="nm">Advanced workshop</span></a></span></div>
-      <div class="row"><span class="d">Oct 19</span><span class="t">11:59PM PST</span><span class="e">Competition ends</span></div>
+      <div class="row key"><span class="d">Oct 21</span><span class="t">11:59PM PST</span><span class="e"><a class="submit" href="https://forms.gle/VXwMbSGD5oLiaTgn8" target="_blank" rel="noopener"><span class="nm">Extended submission deadline</span><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></span></div>
       <div class="row"><span class="d">Oct 22</span><span class="t">11:00AM PST</span><span class="e">Finalists announced</span></div>
       <div class="row"><span class="d">Nov 6-8</span><span class="t">All Day</span><span class="e">Finalist weekend in NYC</span></div>
     </div>
@@ -248,8 +261,8 @@
   </section>
 
   <div class="ctas">
-    <a class="btn" href="https://forms.gle/p6GnRoua4v3Y23Fw8" target="_blank" rel="noopener">
-      <span class="in"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M33.495 20.495a.7.7 0 0 0 0-.99L29.04 15.05a.7.7 0 1 0-.99.99L32.01 20l-3.96 3.96a.7.7 0 1 0 .99.99l4.455-4.455ZM7 20.7h26v-1.4H7v1.4Z" fill="#fff"/></svg><span>Sign Up Your Team</span></span>
+    <a class="btn" href="https://forms.gle/VXwMbSGD5oLiaTgn8" target="_blank" rel="noopener">
+      <span class="in"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M33.495 20.495a.7.7 0 0 0 0-.99L29.04 15.05a.7.7 0 1 0-.99.99L32.01 20l-3.96 3.96a.7.7 0 1 0 .99.99l4.455-4.455ZM7 20.7h26v-1.4H7v1.4Z" fill="#fff"/></svg><span>Submit Your Project</span></span>
     </a>
     <a class="btn plain" href="mailto:svsd.school@gmail.com?subject=Question%20about%20the%20competition">
       <span class="in"><span>Ask a Question</span></span>

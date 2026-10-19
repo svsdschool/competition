@@ -112,14 +112,13 @@
   .row .brief:hover span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   /* the extended deadline: a banner across the top of the page, and the key row in the schedule, both linking to the submission form */
   .deadline { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 18px; padding: 13px 20px; background: #000; color: #fff; text-decoration: none; text-align: center; }
-  .deadline .dl-k { font: 400 12px/1 var(--dmono); text-transform: uppercase; letter-spacing: 0.4px; padding: 5px 8px 4px; border-radius: 4px; background: #e5261b; }
+  .deadline .dl-k { font: 400 12px/1 var(--dmono); text-transform: uppercase; letter-spacing: 0.4px; padding: 6px 9px 5px; border-radius: 4px; background: #fff; color: #000; outline: 1px dashed #000; outline-offset: -3px; }   /* a perforated ticket stub */
   .deadline .dl-v { font: 400 16px/1.3 var(--sans); letter-spacing: -0.2px; }
   .deadline .dl-cta { display: inline-flex; align-items: center; gap: 4px; font: 400 16px/1.3 var(--sans); letter-spacing: -0.2px; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .deadline svg, .row .submit svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .deadline .nw { white-space: nowrap; }
   .deadline:hover .dl-cta { text-decoration-thickness: 2px; }
   .row.key { margin: 0 -12px; padding-left: 12px; padding-right: 12px; background: #f3f3f3; border-radius: 8px; border-bottom-color: transparent; }
-  .page .row.key .d, .page .row.key .t { color: #e5261b; }
   .row .submit { display: inline-flex; align-items: center; gap: 5px; color: var(--flash-ink, var(--ink)); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .row .submit:hover { text-decoration-thickness: 2px; }
   .row br.mb { display: none; }
@@ -194,7 +193,7 @@
 
 <iframe class="flash-layer" id="flash" src="flash.html?flash&amp;embed" title="The Search For Top Young Design Talent" tabindex="-1"></iframe>
 <div class="page">
-<a class="deadline" href="https://forms.gle/VXwMbSGD5oLiaTgn8" target="_blank" rel="noopener"><span class="dl-k">Deadline extended</span><span class="dl-v">Submissions close <span class="nw">Wednesday, Oct 21</span> · <span class="nw">11:59PM PST</span></span><span class="dl-cta">Submit your project <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
+<a class="deadline" href="https://forms.gle/VXwMbSGD5oLiaTgn8" target="_blank" rel="noopener"><span class="dl-k">Deadline extended</span><span class="dl-v"><span class="nw">Wednesday, Oct 21</span> · <span class="nw">11:59PM PST</span></span><span class="dl-cta">Submission form <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>
 <div class="hero" id="hero" role="img" aria-label="The Search For Top Young Design Talent"></div>
 
 <div class="brought">
